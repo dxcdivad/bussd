@@ -21,6 +21,7 @@ class App extends Component {
         'Access-Control-Allow-Origin': '*'
       }
     };
+
     axios.all([axios.get('/api/vehicles/', config), axios.get('/api/stops/', config)]).then(
       axios.spread((vehiclesRes, stopsRes) => {
         const responseBody = {
