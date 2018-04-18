@@ -11,13 +11,14 @@ const router = express.Router();
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+app.use(express.static('build'));
 
-app.get('/', (req, res) => {
-  res.status(200) ? console.log('Everything looks fine...') : console.log("There's an error...");
-  res.json({
-    message: 'API IS UP'
-  });
-});
+// app.get('/', (req, res) => {
+//   res.status(200) ? console.log('Everything looks fine...') : console.log("There's an error...");
+//   res.json({
+//     message: 'API IS UP'
+//   });
+// });
 
 app.use('/api/vehicles', require('./routes/vehicles'));
 app.use('/api/stops', require('./routes/stops'));
