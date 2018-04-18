@@ -2,7 +2,9 @@
   "name": "bussd",
   "version": "0.1.0",
   "private": true,
-  "jest": { "testEnvironment": "node" },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./__tests__/setup.js"
+  },
   "dependencies": {
     "ajv": "^6.4.0",
     "axios": "^0.18.0",
