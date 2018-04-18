@@ -16,7 +16,12 @@ class App extends Component {
   }
 
   callApi = async () => {
-    axios.all([axios.get('/api/vehicles/'), axios.get('/api/stops/')]).then(
+    const config = {
+      headers: {
+        'Acces-Control-Allow-Origin': '*'
+      }
+    };
+    axios.all([axios.get('/api/vehicles/', config), axios.get('/api/stops/', config)]).then(
       axios.spread((vehiclesRes, stopsRes) => {
         const responseBody = {
           vehicles: vehiclesRes.data,
