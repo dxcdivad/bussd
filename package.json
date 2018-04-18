@@ -2,7 +2,7 @@
   "name": "bussd",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8080",
+  "jest": { "testEnvironment": "node" },
   "dependencies": {
     "ajv": "^6.4.0",
     "axios": "^0.18.0",
