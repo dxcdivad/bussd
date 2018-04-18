@@ -18,7 +18,7 @@ class App extends Component {
   callApi = async () => {
     const config = {
       headers: {
-        'Acces-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*'
       }
     };
     axios.all([axios.get('/api/vehicles/', config), axios.get('/api/stops/', config)]).then(
