@@ -21,4 +21,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/vehicles', require('./routes/vehicles'));
 
+app.use('/api/stops', require('./routes/stops'));
+
+
 module.exports = app;
