@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../App.css';
-
-//const path = require('path');
 import http from '../../node_modules/axios/lib/adapters/http';
-//const lib = path.join(path.dirname(require.resolve('axios')), 'lib/adapters/http');
-//const http = require(lib);
+import '../App.css';
 
 class App extends Component {
   constructor() {
@@ -41,15 +37,6 @@ class App extends Component {
     );
   };
 
-  /* callApi = async () => {
-    const response = await fetch('/api/vehicles/');
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
- */
   render() {
     return (
       <div className="App">
