@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../App.css';
 
+const path = require('path');
+const lib = path.join(path.dirname(require.resolve('axios')), 'lib/adapters/http');
+const http = require(lib);
+
 class App extends Component {
   constructor() {
     super();
@@ -17,6 +21,7 @@ class App extends Component {
 
   callApi = async () => {
     const config = {
+      adapter: http,
       headers: {
         'Access-Control-Allow-Origin': '*'
       }
