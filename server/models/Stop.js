@@ -6,8 +6,7 @@ const StopSchema = new Schema({
   stopName: { type: String, required: true },
   stopLon: { type: Number, max: 90.0, min: -120.0, required: true },
   stopLat: { type: Number, max: 90.0, min: -120.0, required: true }
-}, 
-{ _id: false },
+}
 );
 
 StopSchema.index({StopId:1},{unique:true})

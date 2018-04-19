@@ -3,11 +3,10 @@ const Schema = mongoose.Schema;
 
 const TripSchema = new Schema({
   tripId: { type: Number, required: true },
-  routeId: { type: Number, required: true, ref:'Route' },
+  routeId: { type: Number, required: true },
   tripHeadSign: {type: String, required: false}
 
-}, 
-{ _id: false },
+}
 );
 
 TripSchema.index({tripId:1},{unique:true})
