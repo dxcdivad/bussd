@@ -11,6 +11,9 @@ const csvjson= require('csvjson');
 const path = require('path');
 
 
+const cors = require('cors');
+
+
 mongoose.connect('mongodb://localhost/bussd');
 // mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
 mongoose.Promise = Promise;
@@ -20,6 +23,10 @@ mongoose.Promise = Promise;
 
 const app = express();
 const router = express.Router();
+
+
+app.use(cors());
+
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(express.static('build'));

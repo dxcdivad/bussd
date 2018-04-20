@@ -1,24 +1,40 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import http from '../../node_modules/axios/lib/adapters/http';
 import '../App.css';
 
 class App extends Component {
-  state = {
-    response: ''
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      response: 'default'
+    };
+  }
 
   componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.message }))
-      .catch(err => console.log(err));
+    this.callApi();
   }
 
   callApi = async () => {
-    const response = await fetch('/api/vehicles/');
-    const body = await response.json();
+    const config = {
+      adapter: http,
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    };
 
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
+    axios.all([axios.get('/api/vehicles/', config), axios.get('/api/stops/', config)]).then(
+      axios.spread((vehiclesRes, stopsRes) => {
+        const responseBody = {
+          vehicles: vehiclesRes.data,
+          stops: stopsRes.data
+        };
+        this.setState({
+          response: responseBody
+        });
+      })
+    );
   };
 
   render() {
@@ -28,7 +44,7 @@ class App extends Component {
           <h1 className="App-title">Bussd</h1>
         </header>
         <p className="App-intro">This is bussd.</p>
-        <p>{this.state.response}</p>
+        <p />
       </div>
     );
   }
