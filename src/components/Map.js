@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { geolocated } from 'react-geolocated';
+import { GeoLocation } from 'react-geolocation';
 
 class Map extends Component {
   render() {
