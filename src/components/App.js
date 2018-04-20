@@ -14,7 +14,7 @@ class App extends Component {
 
     this.state = {
       response: 'default',
-      vehicles: ''
+      vehicles: []
     };
 
     this.getVehicleData = this.getVehicleData.bind(this);
@@ -49,10 +49,11 @@ class App extends Component {
     const config = { adapter: http, headers: { 'Access-Control-Allow-Origin': '*' } };
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const remoteUrl =
-      'https://realtime.sdmts.com/api/api/gtfs_realtime/vehicle-positions-for-agency/MTS.pbtext?key=ac6279cf-c99b-4e09-8434-5ab4c019479c';
+      'https://realtime.sdmts.com/api/api/where/vehicles-for-agency/MTS.json?key=ac6279cf-c99b-4e09-8434-5ab4c019479c';
 
     axios.get(proxyUrl + remoteUrl, config).then(res => {
-      const parsedRes = JSON.stringify(res.data);
+      const parsedRes = res.data.data.list;
+      console.log(parsedRes);
       //parsedRes = JSON.parse(parsedRes);
       this.setState({ vehicles: parsedRes });
     });
@@ -70,9 +71,9 @@ class App extends Component {
         <AppBody>
           <BodyContainer>
             <MapContainer>
-              <Map />
+              <Map vehicles={this.state.vehicles} />
+              <button onClick={this.getVehicleData}>Get Vehicle Data</button>
             </MapContainer>
-            <button onClick={this.getVehicleData}>Get Vehicle Data</button>
           </BodyContainer>
         </AppBody>
       </div>

@@ -13,11 +13,7 @@ const path = require('path');
 const cors = require('cors');
 
 mongoose.connect('mongodb://localhost/bussd');
-<<<<<<< HEAD
 // mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
-=======
-//mongoose.connect('mongodb://gareth:12345@ds249269.mlab.com:49269/bussandiego');
->>>>>>> Back to local db
 mongoose.Promise = Promise;
 
 const app = express();
