@@ -12,13 +12,8 @@ const path = require('path');
 
 const cors = require('cors');
 
-<<<<<<< HEAD
 mongoose.connect('mongodb://localhost/bussd');
 // mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
-=======
-//mongoose.connect('mongodb://localhost/bussd');
-mongoose.connect('mongodb://gareth:12345@ds249269.mlab.com:49269/bussandiego');
->>>>>>> Trying to connect to mlab
 mongoose.Promise = Promise;
 
 const app = express();
