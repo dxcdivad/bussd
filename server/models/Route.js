@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const RouteSchema = new Schema({
     RouteId:{ type: Number, required: true},
     RouteLongName:{type: String, required: true},
-    RouteType: {typed: String, required: true},
+    RouteType: {type: String, required: true},
     
   
 });

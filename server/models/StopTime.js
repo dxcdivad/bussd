@@ -9,6 +9,6 @@ const StopTimeSchema = new Schema({
 
 }
 );
-StopTimeSchema.index({tripId:1,stopId: 1},{unique:true})
+
 
 module.exports = mongoose.model('StopTime', StopTimeSchema);
