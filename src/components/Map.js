@@ -13,8 +13,15 @@ class Map extends Component {
           <Marker position={{ lat: this.props.coords.latitude, lng: this.props.coords.longitude }} />
           {this.props.vehicles
             ? this.props.vehicles.map(vehicle => {
-                if (vehicle.location !== null) {
-                  return <Marker position={{ lat: vehicle.location.lat, lng: vehicle.location.lon }} />;
+                const icon = 'https://s3.us-east-2.amazonaws.com/garethbk-portfolio/bus-icon.png';
+                const iconRed = 'https://s3.us-east-2.amazonaws.com/garethbk-portfolio/bus-icon-red.png';
+                if (vehicle.location !== null && vehicle.tripStatus !== null) {
+                  if (vehicle.tripStatus.scheduleDeviation > 0) {
+                    return (
+                      <Marker position={{ lat: vehicle.location.lat, lng: vehicle.location.lon }} icon={iconRed} />
+                    );
+                  }
+                  return <Marker position={{ lat: vehicle.location.lat, lng: vehicle.location.lon }} icon={icon} />;
                 }
               })
             : console.log('no vehicles')}
