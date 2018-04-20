@@ -11,9 +11,12 @@ const csvjson= require('csvjson');
 const path = require('path');
 
 
-// mongoose.connect('mongodb://localhost/bussd');
-mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
+mongoose.connect('mongodb://localhost/bussd');
+// mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
 mongoose.Promise = Promise;
+
+
+
 
 const app = express();
 const router = express.Router();

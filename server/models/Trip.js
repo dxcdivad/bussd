@@ -9,6 +9,6 @@ const TripSchema = new Schema({
 }
 );
 
-TripSchema.index({tripId:1},{unique:true})
+
 
 module.exports = mongoose.model('Trip', TripSchema);

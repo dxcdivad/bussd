@@ -9,6 +9,6 @@ const StopSchema = new Schema({
 }
 );
 
-StopSchema.index({StopId:1},{unique:true})
+// StopSchema.index({StopId:1},{unique:true})
 
 module.exports = mongoose.model('Stop', StopSchema);
