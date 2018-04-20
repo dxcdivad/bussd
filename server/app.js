@@ -45,21 +45,21 @@ var stoptimesjson=csvjson.toObject(stopTimesData, options);
 var stopjson=csvjson.toObject(stopData, options);
 var tripsjson=csvjson.toObject(tripsData, options);
 
-Route.collection.insert(routejson,function(err,result){
-    console.log(result)
-});
+// Route.collection.insert(routejson,function(err,result){
+//     console.log(result)
+// });
 
-Stop.collection.insert(stopjson,function(err,result){
-    console.log(result)
-});
+// Stop.collection.insert(stopjson,function(err,result){
+//     console.log(result)
+// });
 
-StopTime.collection.insert(stoptimesjson,function(err,result){
-    console.log(result)
-});
+// StopTime.collection.insert(stoptimesjson,function(err,result){
+//     console.log(result)
+// });
 
-Trip.collection.insert(tripsjson,function(err,result){
-    console.log(result)
-});
+// Trip.collection.insert(tripsjson,function(err,result){
+//     console.log(result)
+// });
 
 
 
@@ -75,8 +75,11 @@ Trip.collection.insert(tripsjson,function(err,result){
 //     });
 
 
-// app.use('/api/vehicles', require('./routes/vehicles'));
-app.use('/api/stops', require('./routes/stops'));
+
+app.use('/api/stop', require('./routes/Stop'));
+app.use('/api/Routes', require('./routes/Route'));
+app.use('/api/StopTime', require('./routes/StopTime'));
+app.use('/api/Trip', require('./routes/Trip'));
 
 
 
