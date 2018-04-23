@@ -54,7 +54,7 @@ class Map extends Component {
         <MapWithAMarker
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXdLMabpElbXEYvWy9yZSj9VRf0dpFMmo&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: '100%' }} />}
-          containerElement={<div style={{ height: '500px', width: '500px' }} />}
+          containerElement={<div id="map-container" style={{ height: '100vh', width: 'auto', overflow: 'hidden' }} />}
           mapElement={<div style={{ height: '100%' }} />}
         />
       </div>

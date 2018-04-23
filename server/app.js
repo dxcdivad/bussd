@@ -41,7 +41,7 @@ var stoptimesjson = csvjson.toObject(stopTimesData, options);
 var stopjson = csvjson.toObject(stopData, options);
 var tripsjson = csvjson.toObject(tripsData, options);
 
-Route.collection.insert(routejson, function(err, result) {
+/* Route.collection.insert(routejson, function(err, result) {
   console.log(result);
 });
 
@@ -63,7 +63,7 @@ Route.find({})
   .exec()
   .then(function(docs) {
     Route.csvReadStream(docs).pipe(fs.createWriteStream('../DataForTransit/routes.csv'));
-  });
+  }); */
 
 app.use('/api/routes', require('./routes/routes'));
 app.use('/api/stop-times', require('./routes/stop-times'));

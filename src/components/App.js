@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import http from '../../node_modules/axios/lib/adapters/http';
-
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import '../App.css';
-
-// import '../App.css';
 import Map from './Map.js';
 import Styles from './Styles.js';
 import { H1, H2, AppHeader, AppBody, MapContainer, BodyContainer } from './Styles.js';
@@ -72,19 +70,17 @@ class App extends Component {
     return (
       <div className="App">
         <AppHeader>
-          <H2>
+          <Grid>
             <h1 className="App-title">Bussd</h1>
-          </H2>
+          </Grid>
         </AppHeader>
 
-        <AppBody>
-          <BodyContainer>
-            <MapContainer>
-              <Map vehicles={this.state.vehicles} stops={this.state.stops} />
-              <button onClick={this.getVehicleData}>Get Vehicle Data</button>
-            </MapContainer>
-          </BodyContainer>
-        </AppBody>
+        <Grid>
+          <AppBody>
+            <Map vehicles={this.state.vehicles} stops={this.state.stops} style={{ width: '100%' }} />
+            <button onClick={this.getVehicleData}>Get Vehicle Data</button>
+          </AppBody>
+        </Grid>
       </div>
     );
   }
