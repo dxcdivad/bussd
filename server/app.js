@@ -41,30 +41,29 @@ var stoptimesjson = csvjson.toObject(stopTimesData, options);
 var stopjson = csvjson.toObject(stopData, options);
 var tripsjson = csvjson.toObject(tripsData, options);
 
-/* Route.collection.insert(routejson,function(err,result){
-    console.log(result)
+Route.collection.insert(routejson, function(err, result) {
+  console.log(result);
 });
 
-Stop.collection.insert(stopjson,function(err,result){
-    console.log(result)
+Stop.collection.insert(stopjson, function(err, result) {
+  console.log(result);
 });
 
-StopTime.collection.insert(stoptimesjson,function(err,result){
-    console.log(result)
+StopTime.collection.insert(stoptimesjson, function(err, result) {
+  console.log(result);
 });
 
-Trip.collection.insert(tripsjson,function(err,result){
-    console.log(result)
-}); */
+Trip.collection.insert(tripsjson, function(err, result) {
+  console.log(result);
+});
 
-// Route.csvReadStream({}).pipe(
-//     fs.createWriteStream('DataForTransit/routes.csv'));
+Route.csvReadStream({}).pipe(fs.createWriteStream('DataForTransit/routes.csv'));
 
-// Route.find({}).exec()
-//     .then(function(docs) {
-//     Route.csvReadStream(docs)
-//         .pipe(fs.createWriteStream('../DataForTransit/routes.csv'));
-//     });
+Route.find({})
+  .exec()
+  .then(function(docs) {
+    Route.csvReadStream(docs).pipe(fs.createWriteStream('../DataForTransit/routes.csv'));
+  });
 
 app.use('/api/routes', require('./routes/routes'));
 app.use('/api/stop-times', require('./routes/stop-times'));
