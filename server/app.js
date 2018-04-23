@@ -64,7 +64,9 @@ Trip.collection.insert(tripsjson,function(err,result){
 //         .pipe(fs.createWriteStream('../DataForTransit/routes.csv'));
 //     });
 
-// app.use('/api/vehicles', require('./routes/vehicles'));
+app.use('/api/routes', require('./routes/routes'));
+app.use('/api/stop-times', require('./routes/stop-times'));
 app.use('/api/stops', require('./routes/stops'));
+app.use('/api/trips', require('./routes/trips'));
 
 module.exports = app;

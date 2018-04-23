@@ -13,7 +13,7 @@ class App extends Component {
     super();
 
     this.state = {
-      response: 'default',
+      response: {},
       vehicles: []
     };
 
@@ -32,17 +32,25 @@ class App extends Component {
       }
     };
 
-    axios.all([axios.get('/api/vehicles/', config), axios.get('/api/stops/', config)]).then(
-      axios.spread((vehiclesRes, stopsRes) => {
-        const responseBody = {
-          vehicles: vehiclesRes.data,
-          stops: stopsRes.data
-        };
-        this.setState({
-          response: responseBody
-        });
-      })
-    );
+    axios
+      .all([
+        axios.get('/api/routes/', config),
+        //axios.get('/api/stop-times/', config),
+        axios.get('/api/stops/', config)
+        //axios.get('/api/trips/', config)
+      ])
+      .then(
+        axios.spread((routesRes, stopsRes) => {
+          console.log(routesRes, stopsRes);
+          const responseBody = {
+            routes: routesRes.data,
+            stops: stopsRes.data
+          };
+          this.setState({
+            response: responseBody
+          });
+        })
+      );
   };
 
   getVehicleData() {
