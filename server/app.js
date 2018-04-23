@@ -9,10 +9,12 @@ const Trip = require('./models/Trip');
 const fs = require('fs');
 const csvjson = require('csvjson');
 const path = require('path');
+const dotenv = require('dotenv');
+dotenv.load();
 
 const cors = require('cors');
 
-mongoose.connect('mongodb://localhost/bussd');
+mongoose.connect(process.env.REACT_APP_DB_LOCATION);
 // mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
 mongoose.Promise = Promise;
 
@@ -39,30 +41,29 @@ var stoptimesjson = csvjson.toObject(stopTimesData, options);
 var stopjson = csvjson.toObject(stopData, options);
 var tripsjson = csvjson.toObject(tripsData, options);
 
-/* Route.collection.insert(routejson,function(err,result){
-    console.log(result)
+Route.collection.insert(routejson, function(err, result) {
+  console.log(result);
 });
 
-Stop.collection.insert(stopjson,function(err,result){
-    console.log(result)
+Stop.collection.insert(stopjson, function(err, result) {
+  console.log(result);
 });
 
-StopTime.collection.insert(stoptimesjson,function(err,result){
-    console.log(result)
+StopTime.collection.insert(stoptimesjson, function(err, result) {
+  console.log(result);
 });
 
-Trip.collection.insert(tripsjson,function(err,result){
-    console.log(result)
-}); */
+Trip.collection.insert(tripsjson, function(err, result) {
+  console.log(result);
+});
 
-// Route.csvReadStream({}).pipe(
-//     fs.createWriteStream('DataForTransit/routes.csv'));
+Route.csvReadStream({}).pipe(fs.createWriteStream('DataForTransit/routes.csv'));
 
-// Route.find({}).exec()
-//     .then(function(docs) {
-//     Route.csvReadStream(docs)
-//         .pipe(fs.createWriteStream('../DataForTransit/routes.csv'));
-//     });
+Route.find({})
+  .exec()
+  .then(function(docs) {
+    Route.csvReadStream(docs).pipe(fs.createWriteStream('../DataForTransit/routes.csv'));
+  });
 
 app.use('/api/routes', require('./routes/routes'));
 app.use('/api/stop-times', require('./routes/stop-times'));

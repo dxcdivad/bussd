@@ -58,7 +58,7 @@ class App extends Component {
     const config = { adapter: http, headers: { 'Access-Control-Allow-Origin': '*' } };
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const remoteUrl =
-      'https://realtime.sdmts.com/api/api/where/vehicles-for-agency/MTS.json?key=ac6279cf-c99b-4e09-8434-5ab4c019479c';
+      'https://realtime.sdmts.com/api/api/where/vehicles-for-agency/MTS.json?key=' + process.env.REACT_APP_MTS_API_KEY;
 
     axios.get(proxyUrl + remoteUrl, config).then(res => {
       const parsedRes = res.data.data.list;
@@ -80,8 +80,7 @@ class App extends Component {
         <AppBody>
           <BodyContainer>
             <MapContainer>
-              <Map vehicles={this.state.vehicles} 
-                   stops={this.state.stops}/>
+              <Map vehicles={this.state.vehicles} stops={this.state.stops} />
               <button onClick={this.getVehicleData}>Get Vehicle Data</button>
             </MapContainer>
           </BodyContainer>
