@@ -22,14 +22,14 @@ mongoose.Promise = Promise;
 
 
 const app = express();
-const router = express.Router();
+// const router = express.Router();
 
 
-app.use(cors());
+// app.use(cors());
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-app.use(express.static('build'));
+// app.use(express.static('build'));
 
 var routeData = fs.readFileSync(path.join(__dirname,'DataForTransit/routes.csv'), { encoding : 'utf8'});
 var stopTimesData = fs.readFileSync(path.join(__dirname,'DataForTransit/stop_times.csv'), { encoding : 'utf8'});
@@ -37,47 +37,39 @@ var stopData = fs.readFileSync(path.join(__dirname,'DataForTransit/stop.csv'), {
 var tripsData = fs.readFileSync(path.join(__dirname,'DataForTransit/trips.csv'), { encoding : 'utf8'});
 var options = {
     delimiter : ',', // optional
-    quote     : '"' // optional
+    // headers:"RouteId,RouteLongName,RouteType" // optional
   };
 
-var routejson=csvjson.toObject(routeData, options);
-var stoptimesjson=csvjson.toObject(stopTimesData, options);
-var stopjson=csvjson.toObject(stopData, options);
-var tripsjson=csvjson.toObject(tripsData, options);
+
+
+
+var routejson=csvjson.toSchemaObject(routeData, options);
+var stoptimesjson=csvjson.toSchemaObject(stopTimesData, options);
+var stopjson=csvjson.toSchemaObject(stopData, options);
+var tripsjson=csvjson.toSchemaObject(tripsData, options);
 
 // Route.collection.insert(routejson,function(err,result){
-//     console.log(result)
+//     // console.log(result)
 // });
 
 // Stop.collection.insert(stopjson,function(err,result){
-//     console.log(result)
+//     // console.log(result)
 // });
 
 // StopTime.collection.insert(stoptimesjson,function(err,result){
-//     console.log(result)
+//     // console.log(result)
 // });
 
 // Trip.collection.insert(tripsjson,function(err,result){
-//     console.log(result)
+//     // console.log(result)
 // });
 
 
 
 
 
-// Route.csvReadStream({}).pipe(
-//     fs.createWriteStream('DataForTransit/routes.csv'));
-
-// Route.find({}).exec()
-//     .then(function(docs) {
-//     Route.csvReadStream(docs)
-//         .pipe(fs.createWriteStream('../DataForTransit/routes.csv'));
-//     });
-
-
-
-app.use('/api/stop', require('./routes/Stop'));
-app.use('/api/Routes', require('./routes/Route'));
+app.use('/api/Stop', require('./routes/Stop'));
+app.use('/api/Route', require('./routes/Route'));
 app.use('/api/StopTime', require('./routes/StopTime'));
 app.use('/api/Trip', require('./routes/Trip'));
 
