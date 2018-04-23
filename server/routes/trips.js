@@ -26,17 +26,5 @@ router.get('/:id', (req, res) => {
 
 
 
-// router.get('/:id', (req, res) => {
-//   var id = req.params.id;
-//   Route.find(
-//     { 'RouteId': id },
-//     ' RouteId RouteLongName RouteType',
-//     function(err, routes) {
-//       if (err) return handleError(err);
-//       console.log(Route.RouteId);
-//       res.status(200).json(routes);
-//     }
-//   );
-// });
 
 module.exports = router;

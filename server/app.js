@@ -17,11 +17,7 @@ const cors = require('cors');
 mongoose.connect(process.env.REACT_APP_DB_LOCATION);
 // mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
 mongoose.Promise = Promise;
-// try {
-//   mongoose.connect('mongodb://localhost/bussd', function() { mongoose.connection.db.dropDatabase()})
-// } catch(err) {
-//   console.log('No data in Database')
-// }
+
 const app = express();
 // const router = express.Router();
 
@@ -30,14 +26,9 @@ const app = express();
 
 
 
-
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 // app.use(express.static('build'));
-
-//remove previous data
-
-
 
 var routeData = fs.readFileSync(path.join(__dirname, 'DataForTransit/routes.csv'), { encoding: 'utf8' });
 var stopTimesData = fs.readFileSync(path.join(__dirname, 'DataForTransit/stop_times.csv'), { encoding: 'utf8' });
@@ -55,21 +46,21 @@ var stoptimesjson = csvjson.toSchemaObject(stopTimesData, options);
 var stopjson = csvjson.toSchemaObject(stopData, options);
 var tripsjson = csvjson.toSchemaObject(tripsData, options);
 
- Route.collection.insert(routejson,function(err,result){
-    console.log(result)
+Route.collection.insert(routejson, function(err, result) {
+  console.log(result);
 });
 
-Stop.collection.insert(stopjson,function(err,result){
-    console.log(result)
+Stop.collection.insert(stopjson, function(err, result) {
+  console.log(result);
 });
 
-StopTime.collection.insert(stoptimesjson,function(err,result){
-    console.log(result)
+StopTime.collection.insert(stoptimesjson, function(err, result) {
+  console.log(result);
 });
 
-Trip.collection.insert(tripsjson,function(err,result){
-    console.log(result)
-}); 
+Trip.collection.insert(tripsjson, function(err, result) {
+  console.log(result);
+});
 
 
 
