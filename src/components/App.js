@@ -12,8 +12,12 @@ class App extends Component {
 
     this.state = {
       response: {},
+<<<<<<< HEAD
       vehicles: [],
       stops: []
+=======
+      vehicles: []
+>>>>>>> finished routes
     };
 
     this.getVehicleData = this.getVehicleData.bind(this);
@@ -46,7 +50,11 @@ class App extends Component {
             stops: stopsRes.data
           };
           this.setState({
+<<<<<<< HEAD
             stops: stopsRes.data
+=======
+            response: responseBody
+>>>>>>> finished routes
           });
         })
       );

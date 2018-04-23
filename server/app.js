@@ -17,7 +17,11 @@ const cors = require('cors');
 mongoose.connect(process.env.REACT_APP_DB_LOCATION);
 // mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
 mongoose.Promise = Promise;
-
+// try {
+//   mongoose.connect('mongodb://localhost/bussd', function() { mongoose.connection.db.dropDatabase()})
+// } catch(err) {
+//   console.log('No data in Database')
+// }
 const app = express();
 // const router = express.Router();
 
@@ -26,97 +30,61 @@ const app = express();
 
 
 
+
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 // app.use(express.static('build'));
+
+//remove previous data
+
+
 
 var routeData = fs.readFileSync(path.join(__dirname, 'DataForTransit/routes.csv'), { encoding: 'utf8' });
 var stopTimesData = fs.readFileSync(path.join(__dirname, 'DataForTransit/stop_times.csv'), { encoding: 'utf8' });
 var stopData = fs.readFileSync(path.join(__dirname, 'DataForTransit/stop.csv'), { encoding: 'utf8' });
 var tripsData = fs.readFileSync(path.join(__dirname, 'DataForTransit/trips.csv'), { encoding: 'utf8' });
 var options = {
-<<<<<<< HEAD
 
-    delimiter : ',', // optional
-    // headers:"RouteId,RouteLongName,RouteType" // optional
-  };
-
-
-
-
-
-
-var routejson=csvjson.toSchemaObject(routeData, options);
-var stoptimesjson=csvjson.toSchemaObject(stopTimesData, options);
-var stopjson=csvjson.toSchemaObject(stopData, options);
-var tripsjson=csvjson.toSchemaObject(tripsData, options);
-
-
-// Route.collection.insert(routejson,function(err,result){
-//     // console.log(result)
-// });
-
-// Stop.collection.insert(stopjson,function(err,result){
-//     // console.log(result)
-// });
-
-// StopTime.collection.insert(stoptimesjson,function(err,result){
-//     // console.log(result)
-// });
-
-// Trip.collection.insert(tripsjson,function(err,result){
-//     // console.log(result)
-// });
-
-
-
-
-
-
-app.use('/api/Stop', require('./routes/Stop'));
-app.use('/api/Route', require('./routes/Route'));
-app.use('/api/StopTime', require('./routes/StopTime'));
-app.use('/api/Trip', require('./routes/Trip'));
-
-
-=======
   delimiter: ',', // optional
   quote: '"' // optional
 };
 
-var routejson = csvjson.toObject(routeData, options);
-var stoptimesjson = csvjson.toObject(stopTimesData, options);
-var stopjson = csvjson.toObject(stopData, options);
-var tripsjson = csvjson.toObject(tripsData, options);
 
-/* Route.collection.insert(routejson, function(err, result) {
-  console.log(result);
+var routejson = csvjson.toSchemaObject(routeData, options);
+var stoptimesjson = csvjson.toSchemaObject(stopTimesData, options);
+var stopjson = csvjson.toSchemaObject(stopData, options);
+var tripsjson = csvjson.toSchemaObject(tripsData, options);
+
+ Route.collection.insert(routejson,function(err,result){
+    console.log(result)
 });
 
-Stop.collection.insert(stopjson, function(err, result) {
-  console.log(result);
+Stop.collection.insert(stopjson,function(err,result){
+    console.log(result)
 });
 
-StopTime.collection.insert(stoptimesjson, function(err, result) {
-  console.log(result);
+StopTime.collection.insert(stoptimesjson,function(err,result){
+    console.log(result)
 });
 
-Trip.collection.insert(tripsjson, function(err, result) {
-  console.log(result);
-});
+Trip.collection.insert(tripsjson,function(err,result){
+    console.log(result)
+}); 
 
-Route.csvReadStream({}).pipe(fs.createWriteStream('DataForTransit/routes.csv'));
 
-Route.find({})
-  .exec()
-  .then(function(docs) {
-    Route.csvReadStream(docs).pipe(fs.createWriteStream('../DataForTransit/routes.csv'));
-  }); */
+
+
+
+
+
+
+
+
 
 app.use('/api/routes', require('./routes/routes'));
 app.use('/api/stop-times', require('./routes/stop-times'));
 app.use('/api/stops', require('./routes/stops'));
 app.use('/api/trips', require('./routes/trips'));
->>>>>>> 7cacd2e43aed2d98c7715830543003ca9af2f4c6
+
 
 module.exports = app;
