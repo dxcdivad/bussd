@@ -4,20 +4,10 @@
   "private": true,
   "dependencies": {
     "ajv": "^6.4.0",
-    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
-    "csvjson": "^5.0.0",
-    "csvtojson": "^1.1.9",
-    "cors": "^2.8.4",
     "express": "^4.16.3",
-    "express-fileupload": "^0.4.0",
-    "fs": "0.0.1-security",
-    "json2csv": "^4.1.2",
     "moment": "^2.22.1",
     "mongoose": "^5.0.15",
-    "mongoose-to-csv": "^0.1.1",
-    "morgan": "^1.9.0",
-    "path": "^0.12.7",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-google-maps": "^9.4.5",
@@ -26,8 +16,7 @@
     "styled-components": "^3.2.5"
   },
   "scripts": {
-    "start": "npm run build && npm run start-server",
-    "start-server": "node ./server/index.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
