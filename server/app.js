@@ -9,10 +9,12 @@ const Trip = require('./models/Trip');
 const fs = require('fs');
 const csvjson = require('csvjson');
 const path = require('path');
+const dotenv = require('dotenv');
+dotenv.load();
 
 const cors = require('cors');
 
-mongoose.connect('mongodb://localhost/bussd');
+mongoose.connect(process.env.REACT_APP_DB_LOCATION);
 // mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
 mongoose.Promise = Promise;
 
@@ -33,6 +35,7 @@ var stopTimesData = fs.readFileSync(path.join(__dirname, 'DataForTransit/stop_ti
 var stopData = fs.readFileSync(path.join(__dirname, 'DataForTransit/stop.csv'), { encoding: 'utf8' });
 var tripsData = fs.readFileSync(path.join(__dirname, 'DataForTransit/trips.csv'), { encoding: 'utf8' });
 var options = {
+<<<<<<< HEAD
 
     delimiter : ',', // optional
     // headers:"RouteId,RouteLongName,RouteType" // optional
@@ -76,5 +79,44 @@ app.use('/api/StopTime', require('./routes/StopTime'));
 app.use('/api/Trip', require('./routes/Trip'));
 
 
+=======
+  delimiter: ',', // optional
+  quote: '"' // optional
+};
+
+var routejson = csvjson.toObject(routeData, options);
+var stoptimesjson = csvjson.toObject(stopTimesData, options);
+var stopjson = csvjson.toObject(stopData, options);
+var tripsjson = csvjson.toObject(tripsData, options);
+
+/* Route.collection.insert(routejson, function(err, result) {
+  console.log(result);
+});
+
+Stop.collection.insert(stopjson, function(err, result) {
+  console.log(result);
+});
+
+StopTime.collection.insert(stoptimesjson, function(err, result) {
+  console.log(result);
+});
+
+Trip.collection.insert(tripsjson, function(err, result) {
+  console.log(result);
+});
+
+Route.csvReadStream({}).pipe(fs.createWriteStream('DataForTransit/routes.csv'));
+
+Route.find({})
+  .exec()
+  .then(function(docs) {
+    Route.csvReadStream(docs).pipe(fs.createWriteStream('../DataForTransit/routes.csv'));
+  }); */
+
+app.use('/api/routes', require('./routes/routes'));
+app.use('/api/stop-times', require('./routes/stop-times'));
+app.use('/api/stops', require('./routes/stops'));
+app.use('/api/trips', require('./routes/trips'));
+>>>>>>> 7cacd2e43aed2d98c7715830543003ca9af2f4c6
 
 module.exports = app;
