@@ -14,7 +14,8 @@ class App extends Component {
 
     this.state = {
       response: {},
-      vehicles: []
+      vehicles: [],
+      stops: []
     };
 
     this.getVehicleData = this.getVehicleData.bind(this);
@@ -47,7 +48,7 @@ class App extends Component {
             stops: stopsRes.data
           };
           this.setState({
-            response: responseBody
+            stops: stopsRes.data
           });
         })
       );
@@ -79,7 +80,8 @@ class App extends Component {
         <AppBody>
           <BodyContainer>
             <MapContainer>
-              <Map vehicles={this.state.vehicles} />
+              <Map vehicles={this.state.vehicles} 
+                   stops={this.state.stops}/>
               <button onClick={this.getVehicleData}>Get Vehicle Data</button>
             </MapContainer>
           </BodyContainer>

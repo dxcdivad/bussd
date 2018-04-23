@@ -26,6 +26,13 @@ class Map extends Component {
                 }
               })
             : console.log('no vehicles')}
+            {this.props.stops
+            ? this.props.stops.map(stop => {
+                const stopIcon = 'https://s3.us-east-2.amazonaws.com/garethbk-portfolio/bus-stop-icon.png';
+                return <Marker position={{ lat: stop.stopLat, lng: stop.stopLon }} icon={stopIcon} />;
+                }
+              )
+            : console.log('no stops')}
         </GoogleMap>
       ))
     );
