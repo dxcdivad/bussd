@@ -9,9 +9,6 @@ const Trip = require('./models/Trip');
 const fs = require('fs');
 const csvjson = require('csvjson');
 const path = require('path');
-const dotenv = require('dotenv');
-dotenv.load();
-
 const cors = require('cors');
 
 mongoose.connect(process.env.REACT_APP_DB_LOCATION);
@@ -20,7 +17,6 @@ mongoose.Promise = Promise;
 
 const app = express();
 const router = express.Router();
-
 app.use(cors());
 
 app.use(bodyParser.json());
@@ -36,12 +32,12 @@ var options = {
   quote: '"' // optional
 };
 
-var routejson = csvjson.toObject(routeData, options);
-var stoptimesjson = csvjson.toObject(stopTimesData, options);
-var stopjson = csvjson.toObject(stopData, options);
-var tripsjson = csvjson.toObject(tripsData, options);
+var routejson = csvjson.toSchemaObject(routeData, options);
+var stoptimesjson = csvjson.toSchemaObject(stopTimesData, options);
+var stopjson = csvjson.toSchemaObject(stopData, options);
+var tripsjson = csvjson.toSchemaObject(tripsData, options);
 
-/* Route.collection.insert(routejson, function(err, result) {
+Route.collection.insert(routejson, function(err, result) {
   console.log(result);
 });
 
@@ -56,14 +52,6 @@ StopTime.collection.insert(stoptimesjson, function(err, result) {
 Trip.collection.insert(tripsjson, function(err, result) {
   console.log(result);
 });
-
-Route.csvReadStream({}).pipe(fs.createWriteStream('DataForTransit/routes.csv'));
-
-Route.find({})
-  .exec()
-  .then(function(docs) {
-    Route.csvReadStream(docs).pipe(fs.createWriteStream('../DataForTransit/routes.csv'));
-  }); */
 
 app.use('/api/routes', require('./routes/routes'));
 app.use('/api/stop-times', require('./routes/stop-times'));
