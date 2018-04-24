@@ -10,6 +10,11 @@ const fs = require('fs');
 const csvjson = require('csvjson');
 const path = require('path');
 const dotenv = require('dotenv');
+const redis=require('redis');
+
+// let client =redis.createClient();
+
+
 dotenv.load();
 
 const cors = require('cors');
@@ -42,7 +47,7 @@ catch(err) {
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-app.use(express.static('build'));
+// app.use(express.static('build'));
 
 var routeData = fs.readFileSync(path.join(__dirname, 'DataForTransit/routes.csv'), { encoding: 'utf8' });
 var stopTimesData = fs.readFileSync(path.join(__dirname, 'DataForTransit/stop_times.csv'), { encoding: 'utf8' });
@@ -90,6 +95,7 @@ app.use('/api/routes', require('./routes/routes'));
 app.use('/api/stop-times', require('./routes/stop-times'));
 app.use('/api/stops', require('./routes/stops'));
 app.use('/api/trips', require('./routes/trips'));
+app.use('/api/vehicle', require('./routes/vehicle'));
 
 
 module.exports = app;
