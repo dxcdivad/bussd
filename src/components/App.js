@@ -5,7 +5,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import '../App.css';
 import Map from './Map.js';
 import Styles from './Styles.js';
-import { H1, H2, AppHeader, AppBody, MapContainer, BodyContainer } from './Styles.js';
+import { H1, H2, AppHeader, AppBody, MapContainer, BodyContainer, Interface } from './Styles.js';
 class App extends Component {
   constructor() {
     super();
@@ -75,10 +75,12 @@ class App extends Component {
           </Grid>
         </AppHeader>
 
-        <Grid>
+        <Grid style={{ paddingLeft: '0', paddingRight: '0' }}>
           <AppBody>
             <Map vehicles={this.state.vehicles} stops={this.state.stops} style={{ width: '100%' }} />
-            <button onClick={this.getVehicleData}>Get Vehicle Data</button>
+            <Interface>
+              <button onClick={this.getVehicleData}>Get Vehicle Data</button>
+            </Interface>
           </AppBody>
         </Grid>
       </div>

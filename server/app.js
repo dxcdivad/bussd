@@ -51,7 +51,7 @@ StopTime.collection.insert(stoptimesjson, function(err, result) {
 
 Trip.collection.insert(tripsjson, function(err, result) {
   console.log(result);
-});
+});*/
 
 app.use('/api/routes', require('./routes/routes'));
 app.use('/api/stop-times', require('./routes/stop-times'));
