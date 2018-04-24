@@ -44,17 +44,10 @@ class Map extends Component {
       <div>Geolocation is not enabled</div>
     ) : this.props.coords ? (
       <div>
-        {/* <table>
-            <tbody>
-              <tr><td>latitude</td><td>{this.props.coords.latitude}</td></tr>
-              <tr><td>longitude</td><td>{this.props.coords.longitude}</td></tr>
-            </tbody>          
-          </table> */}
-
         <MapWithAMarker
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXdLMabpElbXEYvWy9yZSj9VRf0dpFMmo&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: '100%' }} />}
-          containerElement={<div id="map-container" style={{ height: '100vh', width: 'auto', overflow: 'hidden' }} />}
+          containerElement={<div id="map-container" style={{ height: '80vh', width: 'auto', overflow: 'hidden' }} />}
           mapElement={<div style={{ height: '100%' }} />}
         />
       </div>
