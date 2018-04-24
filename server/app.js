@@ -15,12 +15,26 @@ dotenv.load();
 const cors = require('cors');
 
 mongoose.connect(process.env.REACT_APP_DB_LOCATION);
-// mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
+//mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
 mongoose.Promise = Promise;
 
 const app = express();
 // const router = express.Router();
 
+try {
+  //  mongoose.connection.db.dropCollection('routes');
+  //  mongoose.connection.db.dropCollection('stops');
+  //  mongoose.connection.db.dropCollection('stoptimes');
+  //  mongoose.connection.db.dropCollection('trips');
+  Route.collection.drop();
+  Stop.collection.drop();
+  StopTime.collection.drop();
+  Trip.collection.drop();
+}
+catch(err) {
+  console.log(err);
+  console.log('First Time Start');
+};
 
 // app.use(cors());
 
@@ -28,7 +42,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-// app.use(express.static('build'));
+app.use(express.static('build'));
 
 var routeData = fs.readFileSync(path.join(__dirname, 'DataForTransit/routes.csv'), { encoding: 'utf8' });
 var stopTimesData = fs.readFileSync(path.join(__dirname, 'DataForTransit/stop_times.csv'), { encoding: 'utf8' });
@@ -47,19 +61,19 @@ var stopjson = csvjson.toSchemaObject(stopData, options);
 var tripsjson = csvjson.toSchemaObject(tripsData, options);
 
 Route.collection.insert(routejson, function(err, result) {
-  console.log(result);
+  // console.log(result);
 });
 
 Stop.collection.insert(stopjson, function(err, result) {
-  console.log(result);
+  // console.log(result);
 });
 
 StopTime.collection.insert(stoptimesjson, function(err, result) {
-  console.log(result);
+  // console.log(result);
 });
 
 Trip.collection.insert(tripsjson, function(err, result) {
-  console.log(result);
+  // console.log(result);
 });
 
 
