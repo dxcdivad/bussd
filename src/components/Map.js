@@ -5,13 +5,17 @@ import { GeoLocation } from 'react-geolocation';
 
 class Map extends Component {
   render() {
+
     const MapWithAMarker = withScriptjs(
       withGoogleMap(props => (
         <GoogleMap
           defaultZoom={16}
           defaultCenter={{ lat: this.props.coords.latitude, lng: this.props.coords.longitude }}
+          ref={props.onMapLoad}
+          onIdle={props.onMapIdle}
         >
           <Marker position={{ lat: this.props.coords.latitude, lng: this.props.coords.longitude }} />
+          
           {this.props.vehicles
             ? this.props.vehicles.map(vehicle => {
                 const icon = 'https://s3.us-east-2.amazonaws.com/garethbk-portfolio/bus-icon.png';
@@ -46,6 +50,10 @@ class Map extends Component {
       <div>
         <MapWithAMarker
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXdLMabpElbXEYvWy9yZSj9VRf0dpFMmo&v=3.exp&libraries=geometry,drawing,places"
+          // onMapIdle={ ()=> { console.log('map is ready') } }
+          onMapIdle={(googleMap) => {
+            console.log(googleMap.getBounds())
+        }}
           loadingElement={<div style={{ height: '100%' }} />}
           containerElement={<div id="map-container" style={{ height: '80vh', width: 'auto', overflow: 'hidden' }} />}
           mapElement={<div style={{ height: '100%' }} />}
