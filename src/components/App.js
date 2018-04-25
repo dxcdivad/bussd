@@ -46,9 +46,7 @@ class App extends Component {
             stops: stopsRes.data
           };
           this.setState({
-
             stops: stopsRes.data
-
           });
         })
       );
