@@ -112,8 +112,8 @@ h6 {
   animation-delay: 0s;
 }
 .lds-spinner {
-  width: 200px !important;
-  height: 200px !important;
+  width: 125px !important;
+  height: 125px !important;
   -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
   transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
 }
