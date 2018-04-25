@@ -13,14 +13,17 @@ class App extends Component {
     this.state = {
       response: {},
       vehicles: [],
-      stops: []
+      stops: [],
+      selectedStop: 'Select a stop...'
     };
 
     this.getVehicleData = this.getVehicleData.bind(this);
+    this.handleStopClick = this.handleStopClick.bind(this);
   }
 
   componentDidMount() {
     this.callApi();
+    this.getVehicleData();
   }
 
   callApi = async () => {
@@ -40,7 +43,7 @@ class App extends Component {
       ])
       .then(
         axios.spread((routesRes, stopsRes) => {
-          console.log(routesRes, stopsRes);
+          // console.log(routesRes, stopsRes);
           const responseBody = {
             routes: routesRes.data,
             stops: stopsRes.data
@@ -60,9 +63,15 @@ class App extends Component {
 
     axios.get(proxyUrl + remoteUrl, config).then(res => {
       const parsedRes = res.data.data.list;
-      console.log(parsedRes);
       //parsedRes = JSON.parse(parsedRes);
       this.setState({ vehicles: parsedRes });
+    });
+  }
+
+  handleStopClick(stopId) {
+    console.log(stopId);
+    this.setState({
+      selectedStop: stopId
     });
   }
 
@@ -77,9 +86,16 @@ class App extends Component {
 
         <Grid style={{ paddingLeft: '0', paddingRight: '0' }}>
           <AppBody>
-            <Map vehicles={this.state.vehicles} stops={this.state.stops} style={{ width: '100%' }} />
+            <div style={{ height: '80vh' }}>
+              <Map
+                vehicles={this.state.vehicles}
+                stops={this.state.stops}
+                handleStopClick={this.handleStopClick}
+                style={{ width: '100%' }}
+              />
+            </div>
             <Interface>
-              <button onClick={this.getVehicleData}>Get Vehicle Data</button>
+              <h1>{this.state.selectedStop}</h1>
             </Interface>
           </AppBody>
         </Grid>
