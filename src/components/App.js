@@ -95,7 +95,6 @@ class App extends Component {
               />
             </div>
             <Interface>
-              <button onClick={this.getVehicleData}>Get Vehicle Data</button>
               <h1>{this.state.selectedStop}</h1>
             </Interface>
           </AppBody>
