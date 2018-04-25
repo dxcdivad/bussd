@@ -12,7 +12,6 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-fileupload": "^0.4.0",
-    "express-redis-cache": "^1.1.1",
     "fs": "0.0.1-security",
     "json2csv": "^4.1.2",
     "moment": "^2.22.1",
@@ -28,8 +27,6 @@
     "react-google-maps": "^9.4.5",
     "react-moment": "^0.7.0",
     "react-scripts": "1.1.4",
-    "redis": "^2.8.0",
-    "redis-heartbeat": "^0.3.1",
     "styled-components": "^3.2.5"
   },
   "scripts": {
