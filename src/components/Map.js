@@ -52,6 +52,22 @@ class Map extends Component {
     ) : !this.props.isGeolocationEnabled ? (
       <LoadingContainer>
         <h1>Could not load geolocation; make sure it's enabled!</h1>
+        <div className="lds-css ng-scope" style={{ width: '200px', height: '200px' }}>
+          <div className="lds-spinner" style={{ width: '100%', height: '100%' }}>
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
       </LoadingContainer>
     ) : this.props.coords ? (
       <div>
@@ -64,7 +80,25 @@ class Map extends Component {
       </div>
     ) : (
       <LoadingContainer>
-        <h1>Loading...</h1>
+        <h1>
+          <em>Bussd</em>
+        </h1>
+        <div className="lds-css ng-scope" style={{ width: '200px', height: '200px' }}>
+          <div className="lds-spinner" style={{ width: '100%', height: '100%' }}>
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
       </LoadingContainer>
     );
   }

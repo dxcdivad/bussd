@@ -72,7 +72,12 @@ export const LoadingContainer = styled.div`
   height: 80vh;
   width: auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: steelblue;
+  background-color: black;
+
+  > h1 {
+    color: white;
+  }
 `;
