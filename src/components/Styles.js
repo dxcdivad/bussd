@@ -28,7 +28,7 @@ export const AppHeader = styled.header`
   color: white;
   display: flex;
   width: 100%;
-  height: 70px;
+  height: 10vh;
 `;
 
 export const AppBody = styled.div`
@@ -59,4 +59,11 @@ background-color:rgba(0, 0, 0, 0.7);
 position absolute;
 width:100%;
 height:87%; */
+`;
+
+export const Interface = styled.div`
+  display: block;
+  height: 10vh;
+  width: 100%;
+  background-color: black;
 `;
