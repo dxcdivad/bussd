@@ -51,7 +51,7 @@ class Map extends Component {
       <div>Your browser does not support Geolocation</div>
     ) : !this.props.isGeolocationEnabled ? (
       <LoadingContainer>
-        <h1>Could not load geolocation; make sure it's enabled!</h1>
+        <h1>Geolocation is taking its time...</h1>
         <div className="lds-css ng-scope" style={{ width: '200px', height: '200px' }}>
           <div className="lds-spinner" style={{ width: '100%', height: '100%' }}>
             <div />
