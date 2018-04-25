@@ -6,6 +6,25 @@ import { GeoLocation } from 'react-geolocation';
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
 
 class Map extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      centerLat: '',
+      centerLng: ''
+    };
+    this.stopClickEvent = this.stopClickEvent.bind(this);
+  }
+
+  stopClickEvent(stopId, lat, lng) {
+    this.props.handleStopClick(stopId);
+
+    this.setState({
+      centerLat: lat,
+      centerLng: lng
+    });
+  }
+
   render() {
     const MapWithAMarker = withScriptjs(
       withGoogleMap(props => (
@@ -13,6 +32,10 @@ class Map extends Component {
           options={{ minZoom: 15 }}
           defaultZoom={19}
           defaultCenter={{ lat: this.props.coords.latitude, lng: this.props.coords.longitude }}
+          center={{
+            lat: this.state.centerLat ? this.state.centerLat : this.props.coords.latitude,
+            lng: this.state.centerLng ? this.state.centerLng : this.props.coords.longitude
+          }}
           ref={ref => {
             this.map = ref;
           }}
@@ -37,7 +60,14 @@ class Map extends Component {
             {this.props.stops
               ? this.props.stops.map(stop => {
                   const stopIcon = 'https://s3.us-east-2.amazonaws.com/garethbk-portfolio/bus-stop-icon.png';
-                  return <Marker position={{ lat: stop.stopLat, lng: stop.stopLon }} icon={stopIcon} />;
+                  return (
+                    <Marker
+                      key={stop.stopId}
+                      position={{ lat: stop.stopLat, lng: stop.stopLon }}
+                      icon={stopIcon}
+                      onClick={() => this.stopClickEvent(stop.stopId, stop.stopLat, stop.stopLon)}
+                    />
+                  );
                 })
               : console.log('no stops')}
           </MarkerClusterer>
