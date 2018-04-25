@@ -13,14 +13,17 @@ class App extends Component {
     this.state = {
       response: {},
       vehicles: [],
-      stops: []
+      stops: [],
+      selectedStop: 'Select a stop...'
     };
 
     this.getVehicleData = this.getVehicleData.bind(this);
+    this.handleStopClick = this.handleStopClick.bind(this);
   }
 
   componentDidMount() {
     this.callApi();
+    this.getVehicleData();
   }
 
   callApi = async () => {
@@ -58,11 +61,17 @@ class App extends Component {
     const remoteUrl =
       'https://realtime.sdmts.com/api/api/where/vehicles-for-agency/MTS.json?key=' + process.env.REACT_APP_MTS_API_KEY;
 
-
     axios.get(proxyUrl + remoteUrl, config).then(res => {
       const parsedRes = res.data.data.list;
       //parsedRes = JSON.parse(parsedRes);
       this.setState({ vehicles: parsedRes });
+    });
+  }
+
+  handleStopClick(stopId) {
+    console.log(stopId);
+    this.setState({
+      selectedStop: stopId
     });
   }
 
@@ -78,10 +87,16 @@ class App extends Component {
         <Grid style={{ paddingLeft: '0', paddingRight: '0' }}>
           <AppBody>
             <div style={{ height: '80vh' }}>
-              <Map vehicles={this.state.vehicles} stops={this.state.stops} style={{ width: '100%' }} />
+              <Map
+                vehicles={this.state.vehicles}
+                stops={this.state.stops}
+                handleStopClick={this.handleStopClick}
+                style={{ width: '100%' }}
+              />
             </div>
             <Interface>
               <button onClick={this.getVehicleData}>Get Vehicle Data</button>
+              <h1>{this.state.selectedStop}</h1>
             </Interface>
           </AppBody>
         </Grid>

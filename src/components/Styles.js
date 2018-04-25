@@ -62,10 +62,18 @@ height:87%; */
 `;
 
 export const Interface = styled.div`
-  display: block;
-  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 10vh;
+  height: auto;
   width: 100%;
   background-color: black;
+
+  > h1 {
+    color: white;
+  }
 `;
 
 export const LoadingContainer = styled.div`
