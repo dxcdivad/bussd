@@ -20,17 +20,13 @@ dotenv.load();
 const cors = require('cors');
 
 mongoose.connect(process.env.REACT_APP_DB_LOCATION);
-//mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
+
 mongoose.Promise = Promise;
 
 const app = express();
 // const router = express.Router();
 
 try {
-  //  mongoose.connection.db.dropCollection('routes');
-  //  mongoose.connection.db.dropCollection('stops');
-  //  mongoose.connection.db.dropCollection('stoptimes');
-  //  mongoose.connection.db.dropCollection('trips');
   Route.collection.drop();
   Stop.collection.drop();
   StopTime.collection.drop();
