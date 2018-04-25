@@ -77,7 +77,9 @@ class App extends Component {
 
         <Grid style={{ paddingLeft: '0', paddingRight: '0' }}>
           <AppBody>
-            <Map vehicles={this.state.vehicles} stops={this.state.stops} style={{ width: '100%' }} />
+            <div style={{ height: '80vh' }}>
+              <Map vehicles={this.state.vehicles} stops={this.state.stops} style={{ width: '100%' }} />
+            </div>
             <Interface>
               <button onClick={this.getVehicleData}>Get Vehicle Data</button>
             </Interface>

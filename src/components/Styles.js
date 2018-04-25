@@ -67,3 +67,17 @@ export const Interface = styled.div`
   width: 100%;
   background-color: black;
 `;
+
+export const LoadingContainer = styled.div`
+  height: 80vh;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+
+  > h1 {
+    color: white;
+  }
+`;
