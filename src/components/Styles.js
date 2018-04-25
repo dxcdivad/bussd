@@ -28,7 +28,8 @@ export const AppHeader = styled.header`
   color: white;
   display: flex;
   width: 100%;
-  height: 10vh;
+  min-height: 10vh;
+  height: auto;
 `;
 
 export const AppBody = styled.div`
@@ -87,5 +88,6 @@ export const LoadingContainer = styled.div`
 
   > h1 {
     color: white;
+    font-size: 2.5em;
   }
 `;
