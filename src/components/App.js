@@ -40,7 +40,7 @@ class App extends Component {
       ])
       .then(
         axios.spread((routesRes, stopsRes) => {
-          console.log(routesRes, stopsRes);
+          // console.log(routesRes, stopsRes);
           const responseBody = {
             routes: routesRes.data,
             stops: stopsRes.data
@@ -58,9 +58,9 @@ class App extends Component {
     const remoteUrl =
       'https://realtime.sdmts.com/api/api/where/vehicles-for-agency/MTS.json?key=' + process.env.REACT_APP_MTS_API_KEY;
 
+
     axios.get(proxyUrl + remoteUrl, config).then(res => {
       const parsedRes = res.data.data.list;
-      console.log(parsedRes);
       //parsedRes = JSON.parse(parsedRes);
       this.setState({ vehicles: parsedRes });
     });

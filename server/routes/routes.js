@@ -19,7 +19,6 @@ router.get('/:id', (req, res) => {
     ' RouteId RouteLongName RouteType',
     function(err, routes) {
       if (err) return handleError(err);
-      console.log(Route.RouteId);
       res.status(200).json(routes);
     }
   );
