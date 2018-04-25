@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { geolocated } from 'react-geolocated';
-import { GeoLocation } from 'react-geolocation';
+import { LoadingContainer } from './Styles';
 
 class Map extends Component {
   render() {
@@ -41,7 +41,9 @@ class Map extends Component {
     return !this.props.isGeolocationAvailable ? (
       <div>Your browser does not support Geolocation</div>
     ) : !this.props.isGeolocationEnabled ? (
-      <div>Geolocation is not enabled</div>
+      <LoadingContainer>
+        <h1>Could not load geolocation; make sure it's enabled!</h1>
+      </LoadingContainer>
     ) : this.props.coords ? (
       <div>
         <MapWithAMarker
@@ -52,7 +54,9 @@ class Map extends Component {
         />
       </div>
     ) : (
-      <div>Getting the location data&hellip; </div>
+      <LoadingContainer>
+        <h1>Loading...</h1>
+      </LoadingContainer>
     );
   }
 }
