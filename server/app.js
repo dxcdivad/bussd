@@ -25,7 +25,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-// app.use(express.static('build'));
+app.use(express.static('build'));
 
 var routeData = fs.readFileSync(path.join(__dirname, 'DataForTransit/routes.csv'), { encoding: 'utf8' });
 var stopTimesData = fs.readFileSync(path.join(__dirname, 'DataForTransit/stop_times.csv'), { encoding: 'utf8' });
@@ -41,7 +41,7 @@ var stoptimesjson = csvjson.toObject(stopTimesData, options);
 var stopjson = csvjson.toObject(stopData, options);
 var tripsjson = csvjson.toObject(tripsData, options);
 
-/* Route.collection.insert(routejson, function(err, result) {
+Route.collection.insert(routejson, function(err, result) {
   console.log(result);
 });
 Stop.collection.insert(stopjson, function(err, result) {
@@ -52,8 +52,7 @@ StopTime.collection.insert(stoptimesjson, function(err, result) {
 });
 Trip.collection.insert(tripsjson, function(err, result) {
   console.log(result);
-});*/
-
+});
 app.use('/api/routes', require('./routes/routes'));
 app.use('/api/stop-times', require('./routes/stop-times'));
 app.use('/api/stops', require('./routes/stops'));
