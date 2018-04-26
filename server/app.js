@@ -23,6 +23,18 @@ const router = express.Router();
 
 app.use(cors());
 
+try {
+  Route.collection.drop();
+  Stop.collection.drop();
+  StopTime.collection.drop();
+  Trip.collection.drop();
+}
+catch(err) {
+  console.log(err);
+  console.log('First Time Start');
+};
+
+
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(express.static('build'));
@@ -41,7 +53,7 @@ var stoptimesjson = csvjson.toObject(stopTimesData, options);
 var stopjson = csvjson.toObject(stopData, options);
 var tripsjson = csvjson.toObject(tripsData, options);
 
-/* Route.collection.insert(routejson, function(err, result) {
+Route.collection.insert(routejson, function(err, result) {
   console.log(result);
 });
 Stop.collection.insert(stopjson, function(err, result) {
@@ -52,11 +64,11 @@ StopTime.collection.insert(stoptimesjson, function(err, result) {
 });
 Trip.collection.insert(tripsjson, function(err, result) {
   console.log(result);
-});*/
-
+});
 app.use('/api/routes', require('./routes/routes'));
 app.use('/api/stop-times', require('./routes/stop-times'));
 app.use('/api/stops', require('./routes/stops'));
 app.use('/api/trips', require('./routes/trips'));
+app.use('/api/vehicle', require('./routes/vehicle'));
 
 module.exports = app;
