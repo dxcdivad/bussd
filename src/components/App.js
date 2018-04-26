@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import http from '../../node_modules/axios/lib/adapters/http';
-import moment from 'moment';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import '../App.css';
 import Map from './Map.js';
 import Styles from './Styles.js';
 import { H1, H2, AppHeader, AppBody, MapContainer, BodyContainer, Interface } from './Styles.js';
-
 class App extends Component {
   constructor() {
     super();
@@ -71,31 +69,7 @@ class App extends Component {
   }
 
   handleStopClick(stopId) {
-    /* const config = { adapter: http, headers: { 'Access-Control-Allow-Origin': '*' } };
-
-    function convertSecs(time) {
-      let timeSplit = time.split(':');
-      let timeSplitSeconds = +timeSplit[0] * 60 * 60 + +timeSplit[1] * 60 + +timeSplit[2];
-      console.log(timeSplitSeconds);
-      return timeSplitSeconds;
-    }
-
-    let timeNow = moment().format('HH:mm:ss');
-    convertSecs(timeNow);
-
-    let matchedTimes = [];
-
-    axios.get('/api/stop-times/' + stopId, config).then(res => {
-      res.data.forEach(datum => {
-        let convertedDatum = convertSecs(datum.arrivalTime);
-        if (convertedDatum - timeNow > 0) {
-          matchedTimes.push(convertedDatum);
-        }
-      });
-    });
-
-    console.log(matchedTimes.length); */
-
+    console.log(stopId);
     this.setState({
       selectedStop: stopId
     });
