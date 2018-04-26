@@ -29,7 +29,7 @@ class Map extends Component {
     const MapWithAMarker = withScriptjs(
       withGoogleMap(props => (
         <GoogleMap
-          options={{ minZoom: 15 }}
+          options={{ minZoom: 15, gestureHandling: "greedy", disableDefaultUI: true }}
           defaultZoom={19}
           defaultCenter={{ lat: this.props.coords.latitude, lng: this.props.coords.longitude }}
           center={{
@@ -135,7 +135,7 @@ class Map extends Component {
 }
 export default geolocated({
   positionOptions: {
-    enableHighAccuracy: false
+    enableHighAccuracy: true
   },
   userDecisionTimeout: 5000
 })(Map);
