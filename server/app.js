@@ -25,7 +25,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-app.use(express.static('build'));
+// app.use(express.static('build'));
 
 var routeData = fs.readFileSync(path.join(__dirname, 'DataForTransit/routes.csv'), { encoding: 'utf8' });
 var stopTimesData = fs.readFileSync(path.join(__dirname, 'DataForTransit/stop_times.csv'), { encoding: 'utf8' });
