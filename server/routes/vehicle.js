@@ -3,9 +3,16 @@ const router = express.Router();
 // const cache = require('express-redis-cache')({ client: require('redis').createClient(),expire: 20 });
 
 var cache = require('express-redis-cache')({
-  client: require('redis').createClient(process.env.REDIS_URL, { no_ready_check: true }),
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
+  auth_pass: process.env.REDIS_PASSWORD,
   expire: 20
 });
+
+/* ({
+  client: require('redis').createClient(process.env.REDIS_URL, { no_ready_check: true }),
+  expire: 20
+}); */
 const axios = require('axios');
 
 router.get('/', cache.route(), function(req, res) {
