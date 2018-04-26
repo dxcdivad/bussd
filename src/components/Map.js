@@ -52,8 +52,8 @@ const MapWithAMarker = withScriptjs(
   ))
 );
 class Map extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       centerLat: '',

@@ -26,6 +26,11 @@ class App extends Component {
   componentDidMount() {
     this.callApi();
     this.getVehicleData();
+    this.intervalId = setInterval(() => this.getVehicleData(), 30000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
   }
 
   callApi = async () => {
