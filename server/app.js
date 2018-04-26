@@ -23,6 +23,18 @@ const router = express.Router();
 
 app.use(cors());
 
+try {
+  Route.collection.drop();
+  Stop.collection.drop();
+  StopTime.collection.drop();
+  Trip.collection.drop();
+}
+catch(err) {
+  console.log(err);
+  console.log('First Time Start');
+};
+
+
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(express.static('build'));
@@ -57,5 +69,6 @@ app.use('/api/routes', require('./routes/routes'));
 app.use('/api/stop-times', require('./routes/stop-times'));
 app.use('/api/stops', require('./routes/stops'));
 app.use('/api/trips', require('./routes/trips'));
+app.use('/api/vehicle', require('./routes/vehicle'));
 
 module.exports = app;
