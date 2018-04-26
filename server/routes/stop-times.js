@@ -10,7 +10,7 @@ const StopTime = require('../models/StopTime');
   var id = req.params.id;
   StopTime.find(
     { 'stopId': id },
-    ' tripId stopId arrivalTime departureTime:',
+    ' tripId stopId arrivalTime departureTime',
     function(err, StopTime) {
       if (err) return handleError(err);
       console.log(StopTime.stopId);
