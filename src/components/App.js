@@ -26,12 +26,12 @@ class App extends Component {
   componentDidMount() {
     this.callApi();
     this.getVehicleData();
-    this.intervalId = setInterval(() => this.getVehicleData(), 30000);
+    // this.intervalId = setInterval(() => this.getVehicleData(), 30000);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.intervalId);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.intervalId);
+  // }
 
   callApi = async () => {
     const config = {
@@ -68,7 +68,7 @@ class App extends Component {
     // const remoteUrl =
     //   'https://realtime.sdmts.com/api/api/where/vehicles-for-agency/MTS.json?key=' + process.env.REACT_APP_MTS_API_KEY;
 
-    axios.get('/api/vehicle/', config).then(res => {
+    axios.get('/api/vehicle', config).then((res,err) => {
       const parsedRes = res.data;
       //parsedRes = JSON.parse(parsedRes);
       this.setState({ vehicles: parsedRes });
