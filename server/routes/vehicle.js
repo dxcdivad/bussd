@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 // const cache = require('express-redis-cache')({ client: require('redis').createClient(),expire: 20 });
-
-var cache= require('express-redis-cache')({client:require('redis').createClient(process.env.REDIS_URL, {no_ready_check: true}),expire:20});
-
+var cache = require('express-redis-cache')( {client: require('redis').createClient(process.env.REACT_APP_REDIS_CONN),expire:20}
+    );
 const axios =require('axios');
 
 router.get('/', cache.route(),function(req,res) {
