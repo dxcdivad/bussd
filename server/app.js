@@ -48,7 +48,6 @@ var options = {
   quote: '"' // optional
 };
 
-
 var routejson = csvjson.toSchemaObject(routeData, options);
 var stoptimesjson = csvjson.toSchemaObject(stopTimesData, options);
 var stopjson = csvjson.toSchemaObject(stopData, options);
