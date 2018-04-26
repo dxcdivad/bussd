@@ -61,12 +61,10 @@ class App extends Component {
     const remoteUrl =
       'https://realtime.sdmts.com/api/api/where/vehicles-for-agency/MTS.json?key=' + process.env.REACT_APP_MTS_API_KEY;
 
-
-    axios.get('/api/vehicle', config).then(res => {
-      console.log(res);      
-      // const parsedRes = res.data.data.list;
-      // //parsedRes = JSON.parse(parsedRes);
-      // this.setState({ vehicles: parsedRes });
+    axios.get(proxyUrl + remoteUrl, config).then(res => {
+      const parsedRes = res.data.data.list;
+      //parsedRes = JSON.parse(parsedRes);
+      this.setState({ vehicles: parsedRes });
     });
   }
 
