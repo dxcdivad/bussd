@@ -27,7 +27,7 @@ class Map extends Component {
 
   render() {
     const MapWithAMarker = withScriptjs(
-      withGoogleMap(props => (
+      withGoogleMap(props => {
         <GoogleMap
           options={{ minZoom: 15 }}
           defaultZoom={19}
@@ -71,8 +71,8 @@ class Map extends Component {
                 })
               : console.log('no stops')}
           </MarkerClusterer>
-        </GoogleMap>
-      ))
+        </GoogleMap>;
+      })
     );
     {
     }
@@ -135,7 +135,7 @@ class Map extends Component {
 }
 export default geolocated({
   positionOptions: {
-    enableHighAccuracy: false
+    enableHighAccuracy: true
   },
   userDecisionTimeout: 5000
 })(Map);
