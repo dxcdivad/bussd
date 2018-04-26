@@ -15,13 +15,25 @@ dotenv.load();
 const cors = require('cors');
 
 mongoose.connect(process.env.REACT_APP_DB_LOCATION);
-// mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
+
 mongoose.Promise = Promise;
 
 const app = express();
 const router = express.Router();
 
 app.use(cors());
+
+// try {
+//   Route.collection.drop();
+//   Stop.collection.drop();
+//   StopTime.collection.drop();
+//   Trip.collection.drop();
+// }
+// catch(err) {
+//   console.log(err);
+//   console.log('First Time Start');
+// };
+
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
@@ -36,10 +48,12 @@ var options = {
   quote: '"' // optional
 };
 
+
 var routejson = csvjson.toSchemaObject(routeData, options);
 var stoptimesjson = csvjson.toSchemaObject(stopTimesData, options);
 var stopjson = csvjson.toSchemaObject(stopData, options);
 var tripsjson = csvjson.toSchemaObject(tripsData, options);
+
 
 // Route.collection.insert(routejson, function(err, result) {
 //   console.log(result);
@@ -54,9 +68,11 @@ var tripsjson = csvjson.toSchemaObject(tripsData, options);
 //   console.log(result);
 // });
 
+
 app.use('/api/routes', require('./routes/routes'));
 app.use('/api/stop-times', require('./routes/stop-times'));
 app.use('/api/stops', require('./routes/stops'));
 app.use('/api/trips', require('./routes/trips'));
+app.use('/api/vehicle', require('./routes/vehicle'));
 
 module.exports = app;

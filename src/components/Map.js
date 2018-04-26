@@ -72,6 +72,7 @@ class Map extends Component {
   }
 
   render() {
+
     return !this.props.isGeolocationAvailable ? (
       <div>Your browser does not support Geolocation</div>
     ) : !this.props.isGeolocationEnabled ? (
