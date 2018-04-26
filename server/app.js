@@ -15,7 +15,7 @@ dotenv.load();
 const cors = require('cors');
 
 mongoose.connect(process.env.REACT_APP_DB_LOCATION);
-// mongoose.connect('mongodb://jsleague:bussd123@ds249269.mlab.com:49269/bussandiego');
+
 mongoose.Promise = Promise;
 
 const app = express();
@@ -48,10 +48,11 @@ var options = {
   quote: '"' // optional
 };
 
-var routejson = csvjson.toObject(routeData, options);
-var stoptimesjson = csvjson.toObject(stopTimesData, options);
-var stopjson = csvjson.toObject(stopData, options);
-var tripsjson = csvjson.toObject(tripsData, options);
+
+var routejson = csvjson.toSchemaObject(routeData, options);
+var stoptimesjson = csvjson.toSchemaObject(stopTimesData, options);
+var stopjson = csvjson.toSchemaObject(stopData, options);
+var tripsjson = csvjson.toSchemaObject(tripsData, options);
 
 Route.collection.insert(routejson, function(err, result) {
   console.log(result);
