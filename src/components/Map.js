@@ -8,7 +8,7 @@ import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerC
 const MapWithAMarker = withScriptjs(
   withGoogleMap(props => (
     <GoogleMap
-      options={{ minZoom: 15, gestureHandling: "greedy", disableDefaultUI: true }}
+      options={{ minZoom: 15 }}
       defaultZoom={19}
       defaultCenter={{ lat: props.lat, lng: props.lng }}
       center={{
@@ -52,8 +52,8 @@ const MapWithAMarker = withScriptjs(
   ))
 );
 class Map extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       centerLat: '',
