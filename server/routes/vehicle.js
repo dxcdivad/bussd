@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // const cache = require('express-redis-cache')({ client: require('redis').createClient(),expire: 20 });
+
 var cache = require('express-redis-cache')( {client: require('redis').createClient(process.env.REDISCLOUD_URL),expire:20}
     );
 const axios =require('axios');
@@ -17,12 +18,6 @@ router.get('/', cache.route(),function(req,res) {
 
     console.log('get the api');  
     
-
-
-
 });
-
-
-
 
 module.exports = router;
