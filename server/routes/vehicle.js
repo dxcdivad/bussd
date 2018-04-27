@@ -18,7 +18,7 @@ router.get('/', cache.route(), function(req, res) {
       console.log(error);
     });
 
-  console.log('get the api');
+  console.log('get the api!');
 });
 
 module.exports = router;
