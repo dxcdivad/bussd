@@ -15,21 +15,23 @@ const MapWithAMarker = withScriptjs(
         lat: props.centerLat ? props.centerLat : props.lat,
         lng: props.centerLng ? props.centerLng : props.lng
       }}
-      ref={ref => {
-        this.map = ref;
-      }}
+      ref={ref => (this.mapRef = ref)}
       onIdle={props.onMapIdle}
+      onDragEnd={() => {
+        props.setCenter(this.mapRef.getCenter().lat(), this.mapRef.getCenter().lng());
+      }}
     >
       <Marker position={{ lat: props.lat, lng: props.lng }} />
       {props.vehicles
         ? props.vehicles.map(vehicle => {
             const icon = 'https://s3.us-east-2.amazonaws.com/garethbk-portfolio/bus-icon.png';
+            const iconGreen = 'https://s3.us-east-2.amazonaws.com/garethbk-portfolio/bus-icon-green.png';
             const iconRed = 'https://s3.us-east-2.amazonaws.com/garethbk-portfolio/bus-icon-red.png';
             if (vehicle.location !== null && vehicle.tripStatus !== null) {
               if (vehicle.tripStatus.scheduleDeviation > 0) {
                 return <Marker position={{ lat: vehicle.location.lat, lng: vehicle.location.lon }} icon={iconRed} />;
               }
-              return <Marker position={{ lat: vehicle.location.lat, lng: vehicle.location.lon }} icon={icon} />;
+              return <Marker position={{ lat: vehicle.location.lat, lng: vehicle.location.lon }} icon={iconGreen} />;
             }
           })
         : console.log('no vehicles')}
@@ -60,6 +62,7 @@ class Map extends Component {
       centerLng: ''
     };
     this.stopClickEvent = this.stopClickEvent.bind(this);
+    this.handleSetCenter = this.handleSetCenter.bind(this);
   }
 
   stopClickEvent(stopId, lat, lng) {
@@ -71,8 +74,15 @@ class Map extends Component {
     });
   }
 
-  render() {
+  handleSetCenter(lat, lng) {
+    this.setState({
+      centerLat: lat,
+      centerLng: lng
+    });
+    console.log(this.state.centerLat, this.state.centerLng);
+  }
 
+  render() {
     return !this.props.isGeolocationAvailable ? (
       <div>Your browser does not support Geolocation</div>
     ) : !this.props.isGeolocationEnabled ? (
@@ -109,6 +119,7 @@ class Map extends Component {
           centerLat={this.state.centerLat}
           centerLng={this.state.centerLng}
           stopClickEvent={this.stopClickEvent}
+          setCenter={this.handleSetCenter}
         />
       </div>
     ) : (
