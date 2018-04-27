@@ -30,6 +30,9 @@ export const AppHeader = styled.header`
   width: 100%;
   min-height: 10vh;
   height: auto;
+  box-shadow: 1px 1px 1px 2px grey;
+  position: absolute;
+  z-index:99;
 `;
 
 export const AppBody = styled.div`
@@ -71,6 +74,7 @@ export const Interface = styled.div`
   height: auto;
   width: 100%;
   background-color: black;
+  z-index: 9999;
 
   > h1 {
     color: white;

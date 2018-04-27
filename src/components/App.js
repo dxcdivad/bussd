@@ -28,11 +28,11 @@ class App extends Component {
     this.intervalId = setInterval(() => this.getVehicleData(), 15000);
     this.getVehicleData();
   }
-
+ 
   componentWillUnmount() {
     clearInterval(this.intervalId);
   }
-
+  
   callApi = async () => {
     const config = {
       adapter: http,
@@ -114,7 +114,7 @@ class App extends Component {
             <h1 className="App-title">Bussd</h1>
           </Grid>
         </AppHeader>
-
+        <div style={{ minHeight: '10vh' }}></div>
         <Grid style={{ paddingLeft: '0', paddingRight: '0' }}>
           <AppBody>
             <div style={{ height: '80vh' }}>
