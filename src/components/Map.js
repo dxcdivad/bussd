@@ -63,6 +63,7 @@ class Map extends Component {
     };
     this.stopClickEvent = this.stopClickEvent.bind(this);
     this.handleSetCenter = this.handleSetCenter.bind(this);
+    this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
   }
 
   stopClickEvent(stopId, lat, lng) {
@@ -81,6 +82,14 @@ class Map extends Component {
     });
     console.log(this.state.centerLat, this.state.centerLng);
   }
+
+  forceUpdateHandler(){
+    this.forceUpdate();
+    this.setState({
+      centerLat:'',
+      centerLng:''
+    })
+  };
 
   render() {
     return !this.props.isGeolocationAvailable ? (
@@ -106,7 +115,9 @@ class Map extends Component {
         </div>
       </LoadingContainer>
     ) : this.props.coords ? (
+      
       <div>
+        <button style={{ position: 'absolute', top: '80vh', margin: '30px', zIndex: '9999'}} onClick= {this.forceUpdateHandler} >FORCE UPDATE</button>
         <MapWithAMarker
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXdLMabpElbXEYvWy9yZSj9VRf0dpFMmo&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: '100%' }} />}
