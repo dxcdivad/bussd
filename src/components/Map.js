@@ -34,7 +34,7 @@ const MapWithAMarker = withScriptjs(
               return <Marker position={{ lat: vehicle.location.lat, lng: vehicle.location.lon }} icon={iconGreen} />;
             }
           })
-        : console.log('no vehicles')}
+        : console.log('no vehicles!')}
       <MarkerClusterer averageCenter enableRetinaIcons gridSize={60}>
         {props.stops
           ? props.stops.map(stop => {
@@ -83,13 +83,13 @@ class Map extends Component {
     console.log(this.state.centerLat, this.state.centerLng);
   }
 
-  forceUpdateHandler(){
+  forceUpdateHandler() {
     this.forceUpdate();
     this.setState({
-      centerLat:'',
-      centerLng:''
-    })
-  };
+      centerLat: '',
+      centerLng: ''
+    });
+  }
 
   render() {
     return !this.props.isGeolocationAvailable ? (
@@ -115,9 +115,13 @@ class Map extends Component {
         </div>
       </LoadingContainer>
     ) : this.props.coords ? (
-      
       <div>
-        <button style={{ position: 'absolute', top: '80vh', margin: '30px', zIndex: '9999'}} onClick= {this.forceUpdateHandler} >FORCE UPDATE</button>
+        <button
+          style={{ position: 'absolute', top: '80vh', margin: '30px', zIndex: '9999' }}
+          onClick={this.forceUpdateHandler}
+        >
+          FORCE UPDATE
+        </button>
         <MapWithAMarker
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXdLMabpElbXEYvWy9yZSj9VRf0dpFMmo&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: '100%' }} />}
